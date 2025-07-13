@@ -1,7 +1,7 @@
-import { createInitializeMetadataPointerInstruction, createInitializeMintInstruction, ExtensionType, getMintLen, LENGTH_SIZE, TOKEN_2022_PROGRAM_ID, TYPE_SIZE } from "@solana/spl-token";
+import { createAssociatedTokenAccountInstruction, createInitializeMetadataPointerInstruction, createInitializeMintInstruction, createMintToInstruction, ExtensionType, getAssociatedTokenAddressSync, getMintLen, LENGTH_SIZE, TOKEN_2022_PROGRAM_ID, TYPE_SIZE } from "@solana/spl-token";
 import { createInitializeInstruction, pack } from "@solana/spl-token-metadata";
 import { useConnection, useWallet } from "@solana/wallet-adapter-react";
-import { Keypair, SystemProgram, Transaction, } from "@solana/web3.js";
+import { Keypair, LAMPORTS_PER_SOL, SystemProgram, Transaction, } from "@solana/web3.js";
 import { useRef } from "react";
 
 export function TokenLaunchpad() {
@@ -19,7 +19,7 @@ export function TokenLaunchpad() {
         const name = nameRef.current.value;
         const symbol = symbolRef.current.value;
         const imageurl = imageRef.current.value;
-        const supply = supplyRef.current.value;
+        const supply = supplyRef.current.value * LAMPORTS_PER_SOL;
 
         const keypair = Keypair.generate()
 
@@ -66,7 +66,35 @@ export function TokenLaunchpad() {
 
         const signature = await wallet.sendTransaction(transaction, connection);
         console.log(signature);
-        console.log(keypair.publicKey);
+        console.log("Mint Account created !! ", keypair.publicKey.toBase58());
+
+        const associatedToken = getAssociatedTokenAddressSync(
+            keypair.publicKey,
+            wallet.publicKey,
+            false,
+            TOKEN_2022_PROGRAM_ID
+        );
+
+        console.log(associatedToken.toBase58());
+
+        const transaction2 = new Transaction().add(
+            createAssociatedTokenAccountInstruction(
+                wallet.publicKey,
+                associatedToken,
+                wallet.publicKey,
+                keypair.publicKey,
+                TOKEN_2022_PROGRAM_ID
+            ),
+        );
+
+        await wallet.sendTransaction(transaction2, connection);
+
+        const transaction3 = new Transaction().add(
+            createMintToInstruction(keypair.publicKey, associatedToken, wallet.publicKey, supply, [], TOKEN_2022_PROGRAM_ID)
+        );
+
+        await wallet.sendTransaction(transaction3, connection);
+        console.log("Token Minted !")
 
     }
     return (
