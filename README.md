@@ -1,12 +1,44 @@
-# React + Vite
+# 🎯 Solana Token Launchpad
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Live Link: https://your-launchpad-site.vercel.app/
 
-Currently, two official plugins are available:
+🚀 A simple and powerful token creation tool on **Solana**, built using the **Token Program 2022**. Launch your own SPL token in seconds by just filling out a form — no manual minting or CLI needed!
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+![TokenLaunchpad Screenshot](./tokenlaunchpad.png)
 
-## Expanding the ESLint configuration
+## 🔹 How It Works
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+1️⃣ Connect your Solana wallet (Phantom, Backpack, etc.)  
+2️⃣ Enter your token details:
+- ✅ Token Name  
+- ✅ Symbol  
+- ✅ Image URI  
+- ✅ Initial Supply  
+3️⃣ Click **Launch Token**  
+4️⃣ The app automatically:
+   - Creates a **mint account**
+   - Initializes **metadata**
+   - Sets up an **associated token account**
+   - Mints your tokens to your wallet
+
+All powered by **Token Program 2022**.
+
+## 🔹 Tech Stack
+
+- **Frontend:** React.js  
+- **Solana SDK:** `@solana/web3.js`  
+- **Wallet Integration:** `@solana/wallet-adapter`  
+
+## 💡 Why Token Program 2022?
+
+✅ Improved flexibility  
+✅ Metadata support  
+✅ Better compatibility with evolving token standards on Solana  
+
+## 🛠 Setup Instructions
+
+### 1. Clone the repo
+
+```bash
+git clone https://github.com/your-username/solana-token-launchpad.git
+cd solana-token-launchpad
