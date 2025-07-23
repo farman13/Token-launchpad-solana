@@ -1,6 +1,6 @@
 # 🎯 Solana Token Launchpad
 
-Live Link: https://your-launchpad-site.vercel.app/
+Live Link: https://token-launchpad-solana-13.vercel.app/
 
 🚀 A simple and powerful token creation tool on **Solana**, built using the **Token Program 2022**. Launch your own SPL token in seconds by just filling out a form — no manual minting or CLI needed!
 
