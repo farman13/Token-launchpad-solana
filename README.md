@@ -40,5 +40,5 @@ All powered by **Token Program 2022**.
 ### 1. Clone the repo
 
 ```bash
-git clone https://github.com/your-username/solana-token-launchpad.git
+git clone https://github.com/farman13/solana-token-launchpad.git
 cd solana-token-launchpad
